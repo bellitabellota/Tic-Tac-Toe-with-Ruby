@@ -70,6 +70,21 @@ class Player
     end
   end
 
+  def self.check_for_win(player, board)
+    if board[0].all?(player.player_token) || # check for horizontal win patterns
+       board[1].all?(player.player_token) ||
+       board[2].all?(player.player_token) ||
+       board[0][0] == player.player_token && board[1][0] == player.player_token && board[2][0] == player.player_token || # check for vertical win patterns
+       board[0][1] == player.player_token && board[1][1] == player.player_token && board[2][1] == player.player_token ||
+       board[0][2] == player.player_token && board[1][2] == player.player_token && board[2][2] == player.player_token ||
+       board[0][0] == player.player_token && board[1][1] == player.player_token && board[2][2] == player.player_token || # check diagonal win patterns
+       board[0][2] == player.player_token && board[1][1] == player.player_token && board[2][0] == player.player_token
+     
+      puts "#{player.name} wins the game! Congratulations!!!"
+    else puts "No win yet"
+   end
+  end
+
   attr_reader :name, :player_token, :player_number
   
   def initialize(name, player_token, player_number)

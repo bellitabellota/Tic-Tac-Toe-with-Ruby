@@ -10,6 +10,8 @@ def visualize_board(board)
   puts " #{board[2][0]} | #{board[2][1]} | #{board[2][2]} "
 end
 
+
+
 # initialize players
 
 player1 = Player.create_player
@@ -18,6 +20,10 @@ player1.playerinformation
 player2 = Player.create_player
 player2.playerinformation
 
+# Play first round
+
 Player.request_player_move(player1, board)
+Player.check_for_win(player1, board)
 Player.request_player_move(player2, board)
+Player.check_for_win(player1, board)
 
