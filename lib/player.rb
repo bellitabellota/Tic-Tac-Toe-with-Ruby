@@ -3,14 +3,6 @@ class Player
   @@available_player_tokens = ["X", "O"]
   @@remaining_token_after_first_players_choice = nil
 
-  def self.total_number_players
-    @@total_number_players
-  end
-
-  def self.available_player_tokens
-    @@available_player_tokens
-  end
-
   def self.create_player
     @@total_number_players += 1
     player_number = @@total_number_players
@@ -84,18 +76,29 @@ class Player
       game_finished = true
     else puts "No win yet"
       game_finished = false
-   end
+    end
   end
 
   attr_reader :name, :player_token, :player_number
   
+  def playerinformation
+    puts "The token of #{self.name} is #{self.player_token} (Player #{player_number})."
+  end
+
+  private
+
+  def self.total_number_players
+    @@total_number_players
+  end
+
+  def self.available_player_tokens
+    @@available_player_tokens
+  end
+
   def initialize(name, player_token, player_number)
     @name = name
     @player_token = player_token
     @player_number = player_number
   end
-
-  def playerinformation
-    puts "The token of #{self.name} is #{self.player_token} (Player #{player_number})."
-  end
+  
 end
