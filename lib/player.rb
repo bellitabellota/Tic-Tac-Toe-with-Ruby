@@ -52,14 +52,21 @@ class Player
     end
 
     # check which field of the board corresponds to the choice of the player and mark with the corresponding token
+    field_selected = false
 
     board.each_with_index do | inner_array, outer_index |
-      inner_array.each_with_index do | field_value, inner_index |
+      inner_array.each_with_index do | field_value, inner_index |   
         if field_value == choice_player.to_i
           board[outer_index][inner_index] = player.player_token
+          field_selected = true
           break board
         end
       end
+    end
+
+    unless field_selected == true
+      puts "!!! Field already selected. Please choose another field!!!"
+      Player.request_player_move(player, board)
     end
   end
 
