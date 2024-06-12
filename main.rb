@@ -23,22 +23,23 @@ player2.playerinformation
 game_finished = false
 empty_fields_remaining = true
 
-until game_finished == true || empty_fields_remaining == false
-  Player.request_player_move(player1, board)
-  game_finished = Player.check_for_win(player1, board)
+def check_empty_fields_remaining(board, empty_fields_remaining, game_finished)
   empty_fields_remaining = board.flatten.any?(1..9)
   if empty_fields_remaining == false && game_finished == false
     visualize_board(board)
     puts "Draw! Reload the game if you want to try your luck again."
   end
+  empty_fields_remaining
+end
+
+until game_finished == true || empty_fields_remaining == false
+  Player.request_player_move(player1, board)
+  game_finished = Player.check_for_win(player1, board)
+  empty_fields_remaining = check_empty_fields_remaining(board, empty_fields_remaining, game_finished)
 
   if game_finished == false && empty_fields_remaining == true
     Player.request_player_move(player2, board)
     game_finished = Player.check_for_win(player2, board)
-    empty_fields_remaining = board.flatten.any?(1..9)
-    if empty_fields_remaining == false && game_finished == false
-      visualize_board(board)
-      puts "Draw! Reload the game if you want to try your luck again."
-    end
+    empty_fields_remaining = check_empty_fields_remaining(board, empty_fields_remaining, game_finished)
   end
 end
