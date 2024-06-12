@@ -39,6 +39,30 @@ class Player
     player = Player.new(name_player, token_player, player_number)
   end
 
+  def self.request_player_move(player, board)
+    puts "#{player.name} choose your move by entering the number of the field of your choice:"
+    visualize_board(board)
+    choice_player = gets.chomp
+
+    # check if input is a number from 1 to 9
+
+    until (1..9).any?(choice_player.to_i)
+      puts "Invalid choice. Please enter the number that corresponds to the field of your choice:"
+      choice_player = gets.chomp
+    end
+
+    # check which field of the board corresponds to the choice of the player and mark with the corresponding token
+
+    board.each_with_index do | inner_array, outer_index |
+      inner_array.each_with_index do | field_value, inner_index |
+        if field_value == choice_player.to_i
+          board[outer_index][inner_index] = player.player_token
+          break board
+        end
+      end
+    end
+  end
+
   attr_reader :name, :player_token, :player_number
   
   def initialize(name, player_token, player_number)
