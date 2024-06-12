@@ -55,6 +55,8 @@ class Player
         end
       end
     end
+    puts "Updated field:"
+    visualize_board(board)
 
     unless field_selected == true
       puts "!!! Field already selected. Please choose another field!!!"
