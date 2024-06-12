@@ -82,7 +82,7 @@ class Player
   attr_reader :name, :player_token, :player_number
   
   def playerinformation
-    puts "The token of #{self.name} is #{self.player_token} (Player #{player_number})."
+    puts "The token of #{self.name} is #{self.player_token}."
   end
 
   private
