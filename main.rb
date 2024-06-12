@@ -10,8 +10,6 @@ def visualize_board(board)
   puts " #{board[2][0]} | #{board[2][1]} | #{board[2][2]} "
 end
 
-
-
 # initialize players
 
 player1 = Player.create_player
@@ -20,10 +18,27 @@ player1.playerinformation
 player2 = Player.create_player
 player2.playerinformation
 
-# Play first round
+# Request player moves until game is finished or no empty fields remain
 
-Player.request_player_move(player1, board)
-Player.check_for_win(player1, board)
-Player.request_player_move(player2, board)
-Player.check_for_win(player1, board)
+game_finished = false
+empty_fields_remaining = true
 
+until game_finished == true || empty_fields_remaining == false
+  Player.request_player_move(player1, board)
+  game_finished = Player.check_for_win(player1, board)
+  empty_fields_remaining = board.flatten.any?(1..9)
+  if empty_fields_remaining == false && game_finished == false
+    visualize_board(board)
+    puts "Draw! Reload the game if you want to try your luck again."
+  end
+
+  if game_finished == false && empty_fields_remaining == true
+    Player.request_player_move(player2, board)
+    game_finished = Player.check_for_win(player2, board)
+    empty_fields_remaining = board.flatten.any?(1..9)
+    if empty_fields_remaining == false && game_finished == false
+      visualize_board(board)
+      puts "Draw! Reload the game if you want to try your luck again."
+    end
+  end
+end

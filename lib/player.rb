@@ -81,7 +81,9 @@ class Player
        board[0][2] == player.player_token && board[1][1] == player.player_token && board[2][0] == player.player_token
      
       puts "#{player.name} wins the game! Congratulations!!!"
+      game_finished = true
     else puts "No win yet"
+      game_finished = false
    end
   end
 
