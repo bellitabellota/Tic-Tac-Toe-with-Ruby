@@ -9,6 +9,16 @@ class Player
     puts "Please enter the name of Player #{player_number}:"
     name_player = gets.chomp
 
+    token_player = assign_player_token
+
+    Player.new(name_player, token_player, player_number)
+  end
+
+  def self.increase_total_number_players_by_one
+    @@total_number_players += 1
+  end
+
+  def self.assign_player_token
     if @@total_number_players == 1
       puts "Please choose your token (X or O):"
       token_player = gets.chomp
@@ -21,17 +31,12 @@ class Player
       if @@available_player_tokens[1] == token_player
         @@remaining_token_after_first_players_choice = @@available_player_tokens[0]
       else
-        @@remaining_token_after_first_players_choice = @@available_player_tokens[1]        
+        @@remaining_token_after_first_players_choice = @@available_player_tokens[1]
       end
-
+      token_player
     else
-      token_player = @@remaining_token_after_first_players_choice
+      @@remaining_token_after_first_players_choice
     end
-    player = Player.new(name_player, token_player, player_number)
-  end
-
-  def self.increase_total_number_players_by_one
-    @@total_number_players += 1
   end
 
   def self.request_player_move(player, board)
