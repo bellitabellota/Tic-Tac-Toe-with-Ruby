@@ -4,8 +4,7 @@ class Player
   @@remaining_token_after_first_players_choice = nil
 
   def self.create_player
-    @@total_number_players += 1
-    player_number = @@total_number_players
+    player_number = increase_total_number_players_by_one
 
     puts "Please enter the name of Player #{player_number}:"
     name_player = gets.chomp
@@ -29,6 +28,10 @@ class Player
       token_player = @@remaining_token_after_first_players_choice
     end
     player = Player.new(name_player, token_player, player_number)
+  end
+
+  def self.increase_total_number_players_by_one
+    @@total_number_players += 1
   end
 
   def self.request_player_move(player, board)
