@@ -20,19 +20,24 @@ class Player
 
   def self.assign_player_token
     if @@total_number_players == 1
-      puts "Please choose your token (X or O):"
-      token_player = gets.chomp
-
-      until token_player == @@available_player_tokens[0] || token_player == @@available_player_tokens[1] do
-        puts "Invalid choice. Please choose X or O as token:"
-        token_player = gets.chomp
-      end
+      token_player = request_player_token_choice
 
       update_remaining_tokens(token_player)
       token_player
     else
       @@remaining_token_after_first_players_choice
     end
+  end
+
+  def self.request_player_token_choice
+    puts "Please choose your token (X or O):"
+    token_player = gets.chomp
+
+    until token_player == @@available_player_tokens[0] || token_player == @@available_player_tokens[1] do
+      puts "Invalid choice. Please choose X or O as token:"
+      token_player = gets.chomp
+    end
+    token_player
   end
 
   def self.update_remaining_tokens(token_player)
