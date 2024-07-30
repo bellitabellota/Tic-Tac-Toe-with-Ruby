@@ -28,14 +28,18 @@ class Player
         token_player = gets.chomp
       end
 
-      if @@available_player_tokens[1] == token_player
-        @@remaining_token_after_first_players_choice = @@available_player_tokens[0]
-      else
-        @@remaining_token_after_first_players_choice = @@available_player_tokens[1]
-      end
+      update_remaining_tokens(token_player)
       token_player
     else
       @@remaining_token_after_first_players_choice
+    end
+  end
+
+  def self.update_remaining_tokens(token_player)
+    if @@available_player_tokens[1] == token_player
+      @@remaining_token_after_first_players_choice = @@available_player_tokens[0]
+    else
+      @@remaining_token_after_first_players_choice = @@available_player_tokens[1]
     end
   end
 
