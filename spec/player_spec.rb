@@ -12,4 +12,10 @@ describe Player do
       Player.create_player
     end
   end
+
+  describe "#increase_total_number_players_by_one" do
+    it "increases @@total_number_players by 1" do
+      expect { Player.increase_total_number_players_by_one }.to change { Player.total_number_players }.by(1)
+    end
+  end
 end
