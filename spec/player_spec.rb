@@ -65,4 +65,16 @@ describe Player do
       end
     end
   end
+
+  describe "#request_player_token_choice" do
+    # Looping Script method --> Test that is stops when receiven desired input
+    context "when receiving once invalid input then valid input" do
+      it "calls request gets once" do
+        allow(Player).to receive(:puts)
+        allow(Player).to receive(:gets).and_return("k", "X")
+        expect(Player).to receive(:gets).twice
+        Player.request_player_token_choice
+      end
+    end
+  end
 end
