@@ -1,3 +1,7 @@
+Preview
+
+<img src="https://github.com/bellitabellota/Tic-Tac-Toe-with-Ruby/blob/main/Tic%20Tac%20Toe.gif" />
+
 # Tic Tac Toe
 
 ## Assignment instructions from The Odin Project (TOP)
